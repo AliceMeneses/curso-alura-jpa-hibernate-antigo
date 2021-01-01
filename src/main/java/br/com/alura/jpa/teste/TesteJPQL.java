@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import br.com.alura.jpa.modelo.Conta;
 import br.com.alura.jpa.modelo.MovimentacaoBancaria;
@@ -20,9 +20,9 @@ public class TesteJPQL {
 		Conta conta = new Conta();
 		conta.setId(1L);
 
-		String jpql = "Select m from MovimentacaoBancaria m where m.conta = :pConta";
+		String jpql = "Select m from MovimentacaoBancaria m where m.conta = :pConta order by m.valor desc";
 
-		Query query = entityManager.createQuery(jpql);
+		TypedQuery<MovimentacaoBancaria> query = entityManager.createQuery(jpql, MovimentacaoBancaria.class);
 		query.setParameter("pConta", conta);
 		List<MovimentacaoBancaria> movimentacoes = query.getResultList();
 

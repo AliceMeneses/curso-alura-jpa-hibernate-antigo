@@ -29,6 +29,11 @@ public class MovimentacaoBancaria {
 	private List<Categoria> categoria;
 	@ManyToOne
 	private Conta conta;
+	
+	@Override
+	public String toString() {
+		return String.format(" \n Data: %s \n Descricao: %s \n Valor: %s \n Tipo de movimentação: %s", data, descricao, valor, tipoMovimentaoBancaria);
+	}
 
 	public Long getId() {
 		return id;

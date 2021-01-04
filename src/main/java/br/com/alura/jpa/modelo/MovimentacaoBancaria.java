@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
 @NamedQuery(name="somaDasMovimentacoesBancarias", query="Select sum(m.valor) From MovimentacaoBancaria m")
-@NamedQuery(name="mediaDiariasDasMovimetacoesBancarias", query="Select new br.com.alura.jpa.modelo.MediaComData(avg(m.valor), Day(data), Month(data), year(data)) from MovimentacaoBancaria m group by DAY(data), MONTH(data), YEAR(DATA)")
+@NamedQuery(name="mediaDiariasDasMovimetacoesBancarias", query="Select new br.com.alura.jpa.modelo.MediaComData(avg(m.valor), Day(m.data), Month(m.data), year(m.data)) from MovimentacaoBancaria m group by DAY(data), MONTH(data), YEAR(DATA)")
 @NamedQuery(name="mediaDasMovimentacoesBancarias", query="Select avg(m.valor) From MovimentacaoBancaria m")
 
 @Entity

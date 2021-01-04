@@ -17,20 +17,17 @@ public class MovimentacaoBancariaDAO {
 	}
 
 	public BigDecimal somaDasMovimentacoesBancarias() {
-		String jpql = "Select sum(m.valor) From MovimentacaoBancaria m";
-		TypedQuery<BigDecimal> query = entityManager.createQuery(jpql, BigDecimal.class);
+		TypedQuery<BigDecimal> query = entityManager.createNamedQuery("somaDasMovimentacoesBancarias", BigDecimal.class);
 		return query.getSingleResult();
 	}
 
 	public List<MediaComData> mediaDiariasDasMovimetacoesBancarias() {
-		String jpql = "Select new br.com.alura.jpa.modelo.MediaComData(avg(m.valor), Day(data), Month(data), year(data)) from MovimentacaoBancaria m group by DAY(data), MONTH(data), YEAR(DATA)";
-		TypedQuery<MediaComData> query = entityManager.createQuery(jpql, MediaComData.class);
+		TypedQuery<MediaComData> query = entityManager.createNamedQuery("mediaDiariasDasMovimetacoesBancarias", MediaComData.class);
 		return query.getResultList();
 	}
 	
 	public Double mediaDasMovimentacoesBancarias() {
-		String jpql = "Select avg(m.valor) From MovimentacaoBancaria m";
-		TypedQuery<Double> query = entityManager.createQuery(jpql, Double.class);
+		TypedQuery<Double> query = entityManager.createNamedQuery("mediaDasMovimentacoesBancarias", Double.class);
 		return query.getSingleResult();
 	}
 
